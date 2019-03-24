@@ -3,13 +3,17 @@
 @section('content')
 
 
-    <div class="container" style="width: 100%; min-height: 250px; max-height: 70%">
+    <div class="container">
         <div class="row">
             <div class="col-12" style="position: relative;">
                 <form action="{{action('GraphController@graph')}}" onchange="this.submit()" class="data-select-form">
-                    <input type="text" name="daterange" value="{{$date->format('Y-m-d')}}" />
+                    <a href="#" onclick="$('[name=daterange]').val('{{$date->addDay(-1)->format('Y-m-d')}}').trigger('change');">&laquo;</a>
+                    <input type="text" name="daterange" value="{{$date->format('Y-m-d')}}" autocomplete="off" />
+                    <a href="#" onclick="$('[name=daterange]').val('{{$date->addDay(1)->format('Y-m-d')}}').trigger('change');">&raquo;</a>
                 </form>
-                <canvas id="graph"></canvas>
+                <div class="graph-container" style="width: 100%; min-height: 250px; max-height: 70%">
+                    <canvas id="graph"></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -17,9 +21,12 @@
     <script type="text/javascript">
 
         setTimeout(function() {
+
             var ctx = document.getElementById('graph').getContext("2d");
 
-            var data = {!! json_encode(collect($lines)->map(function($line){
+            var data = [];
+
+            data = {!! json_encode(collect($lines)->map(function($line){
                     return ['x' => $line->timestamp->timestamp * 1000, 'y' => $line->glucose];
             })) !!};
 

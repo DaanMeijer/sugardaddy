@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\LogLine;
 use App\LogUpload;
+use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 
@@ -49,7 +50,7 @@ class GraphController extends Controller
 
     public function graph(Request $request){
         $date = $request->get('daterange', date('Y-m-d'));
-        $date = Carbon::parse($date);
+        $date = CarbonImmutable::parse($date);
 
         $lines = LogLine::whereIn('log_upload_id', $request->user()->uploads()->pluck('id'))->whereDate('timestamp', $date)->orderBy('timestamp', 'ASC')->get();
 

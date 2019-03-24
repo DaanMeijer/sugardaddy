@@ -9,6 +9,8 @@ require('./bootstrap');
 require('jquery');
 require('daterangepicker');
 
+
+
 window.Chart = require('chart.js');
 
 
