@@ -5,7 +5,7 @@
     <form action="{{action('GraphController@graph')}}" onchange="this.submit()">
         <input type="text" name="daterange" value="{{$date->format('Y-m-d')}}" />
     </form>
-    <canvas id="graph" style="width: 100%; min-height: 300px; max-height: 100%"></canvas>
+    <canvas id="graph" style="width: 100%; min-height: 300px; max-height: 80%"></canvas>
 
     <script type="text/javascript">
 
