@@ -5,7 +5,7 @@
     <form action="{{action('GraphController@graph')}}" onchange="this.submit()">
         <input type="text" name="daterange" value="{{$date->format('Y-m-d')}}" />
     </form>
-    <canvas id="graph" style="width: 300px; height: 300px;"></canvas>
+    <canvas id="graph" style="width: 100%; min-height: 300px; max-height: 100%"></canvas>
 
     <script type="text/javascript">
 
@@ -38,6 +38,15 @@
                                 displayFormats: {
                                     quarter: 'MMM YYYY'
                                 },
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                // the data minimum used for determining the ticks is Math.min(dataMin, suggestedMin)
+                                suggestedMin: 0,
+
+                                // the data maximum used for determining the ticks is Math.max(dataMax, suggestedMax)
+                                suggestedMax: 20
                             }
                         }]
                     }
