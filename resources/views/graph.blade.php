@@ -2,12 +2,13 @@
 
 @section('content')
 
-    <form action="{{action('GraphController@graph')}}" onchange="this.submit()">
-        <input type="text" name="daterange" value="{{$date->format('Y-m-d')}}" />
-    </form>
+
     <div class="container" style="width: 100%; min-height: 300px; max-height: 80%">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12" style="position: relative;">
+                <form action="{{action('GraphController@graph')}}" onchange="this.submit()" class="data-select-form">
+                    <input type="text" name="daterange" value="{{$date->format('Y-m-d')}}" />
+                </form>
                 <canvas id="graph"></canvas>
             </div>
         </div>
