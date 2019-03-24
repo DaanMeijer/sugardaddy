@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <div class="container" style="width: 100%; min-height: 300px; max-height: 80%">
+    <div class="container" style="width: 100%; min-height: 250px; max-height: 70%">
         <div class="row">
             <div class="col-12" style="position: relative;">
                 <form action="{{action('GraphController@graph')}}" onchange="this.submit()" class="data-select-form">
